@@ -1,10 +1,18 @@
-# How to run automated test
+# Automated test with SauceLabs
+
+Get your credentials in Sauce Labs account page and set them to env vars:
+```
+export SAUCE_USERNAME="{YOUR SAUCE USER NAME}"
+export SAUCE_ACCESS_KEY="{YOUR SAUCE ACCESS KEY}"
+```
+
+Then run the test:
 
 ```
 $ ./gradlew test
 ```
 
-# Manual run
+# Manual test
 1. Visit [publisher website](https://1svkujd1fk.execute-api.us-east-2.amazonaws.com/). You will get uid here.
 2. Click the ad, then it goes to [advertiser page](https://p64ya2x0wl.execute-api.us-east-2.amazonaws.com/)
 3. Input item id and make a conversion. Make sure it sends a POST request to /conversion on publisher domain. 

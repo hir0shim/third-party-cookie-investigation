@@ -32,12 +32,10 @@ public class BrowserTest {
     private static Capabilities getSauceOptions() {
         final String sauceUserName = System.getenv("SAUCE_USERNAME");
         final String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
-        final String tunnelIdentifier = System.getenv("TUNNEL_IDENTIFIER");
 
         final MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("username", sauceUserName);
         sauceOptions.setCapability("accessKey", sauceAccessKey);
-        sauceOptions.setCapability("tunnelIdentifier", tunnelIdentifier);
         sauceOptions.setCapability("name", SAUCE_LABS_APPLICATION_NAME);
         return sauceOptions;
     }
