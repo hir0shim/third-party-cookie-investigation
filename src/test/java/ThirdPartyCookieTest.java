@@ -22,7 +22,7 @@ import java.util.*;
 import static org.junit.Assert.assertTrue;
 
 
-public class BrowserTest {
+public class ThirdPartyCookieTest {
     final private static String ADVERTISER_URL = "https://p64ya2x0wl.execute-api.us-east-2.amazonaws.com/";
     final private static String PUBLISHER_URL = "https://1svkujd1fk.execute-api.us-east-2.amazonaws.com/";
     final private static String REPORT_URL = PUBLISHER_URL + "report";
@@ -49,57 +49,6 @@ public class BrowserTest {
         return browserOptions;
     }
 
-    private static Capabilities getOldestChromeCapabilities() {
-        final DesiredCapabilities browserOptions = new DesiredCapabilities(BrowserType.CHROME, "50.0", Platform.WIN10);
-        browserOptions.setCapability("sauce:options", getSauceOptions());
-        return browserOptions;
-    }
-
-    private static Capabilities getLatestEdgeCapabilities() {
-        final EdgeOptions browserOptions = new EdgeOptions();
-        browserOptions.setCapability("platformName", "Windows 10");
-        browserOptions.setCapability("browserVersion", "latest");
-        browserOptions.setCapability("sauce:options", getSauceOptions());
-        return browserOptions;
-    }
-
-    private static Capabilities getOldestEdgeCapabilities() {
-        final EdgeOptions browserOptions = new EdgeOptions();
-        browserOptions.setCapability("platformName", "Windows 10");
-        browserOptions.setCapability("browserVersion", "15.15063");
-        browserOptions.setCapability("sauce:options", getSauceOptions());
-        return browserOptions;
-    }
-
-    private static Capabilities getLatestFirefoxCapabilities() {
-        final FirefoxOptions browserOptions = new FirefoxOptions();
-        browserOptions.setCapability("platformName", "Windows 10");
-        browserOptions.setCapability("browserVersion", "latest");
-        browserOptions.setCapability("sauce:options", getSauceOptions());
-        return browserOptions;
-    }
-
-    private static Capabilities getOldestFirefoxCapabilities() {
-        final FirefoxOptions browserOptions = new FirefoxOptions();
-        browserOptions.setCapability("platformName", "Windows 10");
-        browserOptions.setCapability("browserVersion", "60.0");
-        browserOptions.setCapability("sauce:options", getSauceOptions());
-        return browserOptions;
-    }
-
-    private static Capabilities getLatestInternetExplorerCapabilities() {
-        final InternetExplorerOptions browserOptions = new InternetExplorerOptions();
-        browserOptions.setCapability("platformName", "Windows 10");
-        browserOptions.setCapability("browserVersion", "latest");
-        browserOptions.setCapability("sauce:options", getSauceOptions());
-        return browserOptions;
-    }
-
-    private static Capabilities getOldestInternetExplorerCapabilities() {
-        final DesiredCapabilities browserOptions = new DesiredCapabilities(BrowserType.IE, "9.0", Platform.VISTA);
-        browserOptions.setCapability("sauce:options", getSauceOptions());
-        return browserOptions;
-    }
 
     private static Capabilities getLatestSafariCapabilities() {
         final SafariOptions browserOptions = new SafariOptions();
@@ -109,18 +58,11 @@ public class BrowserTest {
         return browserOptions;
     }
 
-    // safari < 12 failed to launch VM probably because of the incompatible Selenium version
-    private static Capabilities getOldestSafariCapabilities() {
-        final SafariOptions browserOptions = new SafariOptions();
-        browserOptions.setCapability("platformName", "macOS 10.14");
-        browserOptions.setCapability("browserVersion", "12.0");
-        browserOptions.setCapability("sauce:options", getSauceOptions());
-        return browserOptions;
-    }
-
     private static WebDriver setUpWebDriver() throws MalformedURLException {
         final String sauceURL = "https://ondemand.saucelabs.com/wd/hub";
         WebDriver driver = new RemoteWebDriver(new URL(sauceURL), getLatestSafariCapabilities());
+        // If you want to try Chrome
+        // WebDriver driver = new RemoteWebDriver(new URL(sauceURL), getLatestChromeCapabilities());
         return driver;
     };
 

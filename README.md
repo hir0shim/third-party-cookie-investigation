@@ -12,6 +12,10 @@ Then run the test:
 $ ./gradlew test
 ```
 
+Update ThirdPartyCookieTest.setUpWebDriver` to try with different browsers.
+The test should pass if the browser allows 3rd party cookie.
+You can also try with local browsers if you update the function.
+
 # Manual test
 1. Visit [publisher website](https://1svkujd1fk.execute-api.us-east-2.amazonaws.com/). You will get uid here.
 2. Click the ad, then it goes to [advertiser page](https://p64ya2x0wl.execute-api.us-east-2.amazonaws.com/)
