@@ -164,7 +164,10 @@ public class BrowserTest {
         final JSONArray conversions = json.getJSONArray("conversions");
         for (int i = 0; i < conversions.length(); i++) {
             final JSONObject conversion = conversions.getJSONObject(i);
-            if (conversion.getString("uid").equals(uid) && conversion.getString("item").equals(itemId)) {
+            if (
+                    conversion.has("uid") && conversion.getString("uid").equals(uid) &&
+                    conversion.has("item") && conversion.getString("item").equals(itemId)
+            ) {
                 System.out.println("Found corresponding conversion: " + conversion.toString());
                 return true;
             }
