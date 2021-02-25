@@ -24,7 +24,7 @@ $ ./gradlew test
 
 # Manual test
 1. Visit [publisher website](https://1svkujd1fk.execute-api.us-east-2.amazonaws.com/). You will get uid here.
-2. Click the ad, then it goes to [advertiser page](https://p64ya2x0wl.execute-api.us-east-2.amazonaws.com/)
+2. Click the ad, then it goes to [advertiser page](https://hir0shim.github.io/fake-advertiser/index.html)
 3. Input item id and make a conversion. Make sure it sends a POST request to /conversion on publisher domain. 
 4. Go to [publisher report](https://1svkujd1fk.execute-api.us-east-2.amazonaws.com/report) and make sure your uid and item id appears.
 

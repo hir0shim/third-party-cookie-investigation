@@ -23,7 +23,7 @@ import static org.junit.Assert.assertTrue;
 
 
 public class ThirdPartyCookieTest {
-    final private static String ADVERTISER_URL = "https://p64ya2x0wl.execute-api.us-east-2.amazonaws.com/";
+    final private static String ADVERTISER_URL = "https://hir0shim.github.io/fake-advertiser/index.html";
     final private static String PUBLISHER_URL = "https://1svkujd1fk.execute-api.us-east-2.amazonaws.com/";
     final private static String REPORT_URL = PUBLISHER_URL + "report";
     final private static String SAUCE_LABS_APPLICATION_NAME = "3rdPartyCookieTest";
