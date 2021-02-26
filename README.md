@@ -15,8 +15,14 @@ It will simulate the same behavior as manual test above, and the test will pass 
 **The test passed which means it actually sent third party cookies. This is the unexpected behavior**
 
 ### Automated test with local browser
-It assumes safaridriver to be setup properly.  
-Just run:
+Make sure safari driver installed and enabled.
+Check out [Testing with WebDriver in Safari](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari) for details.
+```
+$ safaridriver --enable
+```
+
+
+Then run the test:
 ```
 $ ./gradlew clean test -Ddriver=local
 ```
