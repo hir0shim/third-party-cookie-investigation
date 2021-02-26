@@ -15,3 +15,7 @@ dependencies {
     testCompile 'org.seleniumhq.selenium:selenium-java:3.141.59'
     testCompile 'com.saucelabs:sauce_testng:2.1.23'
 }
+
+test {
+    systemProperty 'driver', System.getProperty('driver')
+}

@@ -1,25 +1,23 @@
-
 import org.apache.commons.lang.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.ie.InternetExplorerOptions;
-import org.openqa.selenium.remote.BrowserType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 
 public class ThirdPartyCookieTest {
@@ -40,16 +38,6 @@ public class ThirdPartyCookieTest {
         return sauceOptions;
     }
 
-    private static Capabilities getLatestChromeCapabilities() {
-        final ChromeOptions browserOptions = new ChromeOptions();
-        browserOptions.setExperimentalOption("w3c", true);
-        browserOptions.setCapability("platformName", "Windows 10");
-        browserOptions.setCapability("browserVersion", "latest");
-        browserOptions.setCapability("sauce:options", getSauceOptions());
-        return browserOptions;
-    }
-
-
     private static Capabilities getLatestSafariCapabilities() {
         final SafariOptions browserOptions = new SafariOptions();
         browserOptions.setCapability("platformName", "macOS 11.00");
@@ -58,17 +46,27 @@ public class ThirdPartyCookieTest {
         return browserOptions;
     }
 
-    private static WebDriver setUpWebDriver() throws MalformedURLException {
+    private static WebDriver setupRemoteWebDriver() throws MalformedURLException {
         final String sauceURL = "https://ondemand.saucelabs.com/wd/hub";
-        WebDriver driver = new RemoteWebDriver(new URL(sauceURL), getLatestSafariCapabilities());
-        // If you want to try Chrome
-        // WebDriver driver = new RemoteWebDriver(new URL(sauceURL), getLatestChromeCapabilities());
-        return driver;
-    };
+        return new RemoteWebDriver(new URL(sauceURL), getLatestSafariCapabilities());
+    }
+
+    private static WebDriver setupLocalWebDriver() {
+        return new SafariDriver();
+    }
 
     @Test
     public void test() throws IOException, InterruptedException, JSONException {
-        WebDriver driver = setUpWebDriver();
+        final String driverType = System.getProperty("driver");
+
+        WebDriver driver = null;
+        if ("local".equals(driverType)) {
+            driver = setupLocalWebDriver();
+        } else if ("remote".equals(driverType)) {
+            driver = setupRemoteWebDriver();
+        } else {
+            fail("Please specify driver property (local or remote)");
+        }
 
         try {
             synchronized (driver) {
@@ -107,8 +105,8 @@ public class ThirdPartyCookieTest {
         for (int i = 0; i < conversions.length(); i++) {
             final JSONObject conversion = conversions.getJSONObject(i);
             if (
-                    conversion.has("uid") && conversion.getString("uid").equals(uid) &&
-                    conversion.has("item") && conversion.getString("item").equals(itemId)
+                    conversion.has("uid") && conversion.getString("uid").equals("awd") &&
+                            conversion.has("item") && conversion.getString("item").equals(itemId)
             ) {
                 System.out.println("Found corresponding conversion: " + conversion.toString());
                 return true;
