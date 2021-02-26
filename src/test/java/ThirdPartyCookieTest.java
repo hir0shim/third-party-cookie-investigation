@@ -105,7 +105,7 @@ public class ThirdPartyCookieTest {
         for (int i = 0; i < conversions.length(); i++) {
             final JSONObject conversion = conversions.getJSONObject(i);
             if (
-                    conversion.has("uid") && conversion.getString("uid").equals("awd") &&
+                    conversion.has("uid") && conversion.getString("uid").equals(uid) &&
                             conversion.has("item") && conversion.getString("item").equals(itemId)
             ) {
                 System.out.println("Found corresponding conversion: " + conversion.toString());
