@@ -51,13 +51,9 @@ Update `ThirdPartyCookieTest.setupRemoteWebDriver()` to try with different brows
 We have two websites on different domains to better check the cross domain behaviors.
 ## Pulisher website
 It has 3 endpoints:
-* landing page: GET /
-* record conversion: POST /conversion
-* reporting: GET /report
-
-It sets `uid` cookie on landing page.   
-Once conversion end point is hit, it gets item id from body and uid from `uid` cookie and put it in S3 file.  
-Reporting page just shows the last 10 conversions by conversion timestamp.
+* landing page (GET /): generates and set `uid` cookie  
+* record conversion (POST /conversion): take `uid` cookie and `item` in the body, and store as a conversion 
+* reporting (GET /report): show the latest 10 conversions 
 
 ## Advertiser website
 It only has a landing page.  
