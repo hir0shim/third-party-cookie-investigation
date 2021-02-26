@@ -12,7 +12,7 @@ Make sure you're using **Safari 14**.
 
 ## Automated test
 It will simulate the same behavior as manual test above, and the test will pass if it the uid appears which means third party cookies are sent.  
-**The test passed which means it actually sent third party cookies. This is the unexpected behavior**
+**The test passed which means it actually sent third party cookies. This is the unexpected behavior.**
 
 ### Automated test with local browser
 Make sure safari driver installed and enabled.
